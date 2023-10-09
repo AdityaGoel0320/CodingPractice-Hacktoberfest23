@@ -1,0 +1,40 @@
+class Solution {
+    public List<List<Integer>> generat(int numRows) {
+        List<List<Integer>> result = new ArrayList<>();
+        
+        if (numRows <= 0) {
+            return result;
+        }
+        
+        // Create the first row with just one element, which is 1.
+        List<Integer> firstRow = new ArrayList<>();
+        firstRow.add(1);
+        result.add(firstRow);
+        
+        // Generate the rest of the rows.
+        for (int i = 1; i < numRows; i++) {
+            List<Integer> previousRow = result.get(i - 1);
+            List<Integer> newRow = new ArrayList<>();
+            
+            // The first element of each row is always 1.
+            newRow.add(1);
+            
+            // Calculate the elements in the current row.
+            for (int j = 1; j < i; j++) {
+                int sum = previousRow.get(j - 1) + previousRow.get(j);
+                newRow.add(sum);
+            }
+            
+            // The last element of each row is always 1.
+            newRow.add(1);
+            
+            result.add(newRow);
+        }
+        
+        return result;
+    }
+    public List<List<Integer>> generate(int numRows) {
+        List<List<Integer>> matrix = new ArrayList<>() ; 
+        return generat(numRows) ; 
+    }
+}
