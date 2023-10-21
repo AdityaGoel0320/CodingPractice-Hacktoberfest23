@@ -1,0 +1,32 @@
+class Solution {
+  void fnc(int[] arr, TreeMap<Integer, Integer> h1) {
+    // HashMap<Integer, Integer> h1 = new HashMap();
+    for (int x : arr) {
+      if (h1.containsKey(x)) {
+        h1.put(x, h1.get(x) + 1);
+      } else {
+        h1.put(x, 1);
+
+      }
+    }
+
+    // return sum;
+  }
+
+  public List<Integer> intersection(int[][] arr) {
+    TreeMap<Integer, Integer> h1 = new TreeMap();
+    int l = arr.length;
+    for (int i = 0; i <= l - 1; i++) {
+      fnc(arr[i], h1);
+    }
+    int sum = 0;
+    List<Integer> ans = new ArrayList<>();
+    for (int x : h1.keySet()) {
+      if (h1.get(x) == l) {
+        ans.add(x);
+      }
+
+    }
+    return ans;
+  }
+}
